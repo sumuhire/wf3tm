@@ -1,0 +1,46 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+homepage:
+  path:     /
+  controller: App\Controller\DefaultController::homepage
+
+login:
+  path:     /login
+  controller: App\Controller\DefaultController::login
+
+logout:
+  path:     /logout
+
+task_list:
+  path:     /tasks
+  controller: App\Controller\TaskController::listTasks
+  
+task_detail:
+  path:     /task/detail/{task} 
+  controller: App\Controller\TaskController::taskDetail
+  
+  #task to define the task(id) as what is after the slash bar
+  #If no ID, we cant access the url
+
+project_list:
+  path:     /projects
+  controller: App\Controller\ProjectController::listProjects
+
+admin_default:
+  path:     /admin
+  controller: App\Controller\AdminController::default
+
+admin_shuffle_users:
+  path:     /admin/shuffle
+  controller: App\Controller\AdminController::shuffleUsers
+
+admin_user_list:
+  path:     /admin/users.json
+  controller: App\Controller\AdminController::jsonUserList
+  options:
+    expose: true
+
+
+

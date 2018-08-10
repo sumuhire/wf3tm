@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		{% if isLogged == true %}
+			<p>Hello</p>
+		{% else %}
+			<p>Please, login</p>
+		{% endif %}
+		
+		
+		{{ dump(elements) }}
+		
+		{{ date()|date('Y-m-d H:i:s') }}
+		
+		<ul>
+			<?php $elements = range(1, 10); $i = 0; ?>
+			<?php foreach ($elements as $element) { ?>
+				<?php $i++; ?>
+				<li><?php echo $element; ?></li>
+			<?php } ?>
+		</ul>
+		<ul>
+			{% for key, element in elements %}
+				{% if loop.index0 is even %}
+					<li style="color:red;">{{ element }}</li>
+				{% else %}
+					<li>{{ element }}</li>
+				{% endif %}
+			{% else %}
+				<p>message</p>
+			{% endfor %}
+		</ul>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

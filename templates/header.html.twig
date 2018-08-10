@@ -1,0 +1,54 @@
+<header>
+	<div class="jumbotron container-fluid">
+		<div class="row">
+    		<div class="col-xs-12 col-md-4 col-lg-3 center">
+    			<img class="img-responsive" src="{{ asset('image/scrum.png') }}">
+    		</div>
+    		<div class="col-xs-12 col-md-8 col-lg-9">
+        		<h1>Project manager</h1>
+        		<div class="container-fluid">
+            		<p>
+            			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla nec felis vitae 
+            			malesuada. Aenean ac commodo lacus. Aliquam sed auctor turpis. Nam suscipit tellus sit amet 
+            			neque scelerisque, ut sagittis lectus dictum.
+            		</p>
+        		</div>
+    		</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">Project manager</a>
+				</div>
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			        {% if is_granted('ROLE_USER') %}
+					<li><a href="{{ path('project_list') }}">List of Projects</a></li>
+			        <li><a href="{{ path('task_list') }}">List of tasks</a></li>
+			        {% endif %}
+					{% if is_granted('ROLE_ADMIN') %}
+					<li><a href="{{ path('admin_default') }}">Administration</a></li>
+			        <li><a href="{{ path('admin_shuffle_users') }}#selectLength">Create groups</a></li>
+			      	{% endif %}
+					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<li><a href="{{ path('logout') }}">Logout</a></li>
+					{% else %}
+					<li><a href="{{ path('login') }}">Login</a></li>
+					{% endif %}  
+				  </ul>
+			    </div>
+			</div>
+		</nav>
+	</div>
+</header>

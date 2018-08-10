@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}wf3tm admin{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<fieldset class="container-fluid" id="selectLength">
+			<legend>Group length</legend>
+			{% for index in range(2,5) %}
+				{% set btnType = length == index ? 'btn-primary active' : 'btn-info' %}
+    			<div class="col-xs-3">
+    				<a href="{{ path('admin_shuffle_users', {'length':index}) }}#selectLength">
+    					<button class="btn {{ btnType }} btn-block">{{ index }}</button>
+    				</a>
+    			</div>
+			{% endfor %}
+		</fieldset>
+		
+		<table class="table table-striped mt-5">
+		{% for userGroup in users %}
+			<tr>
+        		{% for user in userGroup %}
+        			<td>{{ user.name }}</td>
+        		{% endfor %}
+			</tr>
+		{% endfor %}
+		</table>
+	</div>
+{% endblock %}
+
+
+{% block javascripts %}
+{% endblock %}

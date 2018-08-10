@@ -1,0 +1,78 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory: { memory: ~ }
+        user_provider:
+            entity:
+                class:  App\Entity\User
+                property: username
+    #provide with username, firewall handle authentication
+    #He kows you are a user thats it
+
+
+    #Several firewall for each page, 1st one profille css image are accessible as security set to false
+    #pattern to state wherer the firewall applies
+
+    #Authentication
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern: .*
+            anonymous: true
+            provider: user_provider
+            form_login:
+                check_path: login
+                login_path: login
+                default_target_path: /
+            logout:
+                path: /logout
+                target: /
+
+    #for the logout, built in, nothing to 
+    #default target to redirect after login
+
+    #The main firewall will protect the whole application
+    
+    encoders:
+        App\Entity\User:
+            algorithm:  bcrypt
+            cost:       13
+    
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+
+        #State that admin>user
+
+            # activate different ways to authenticate
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    
+    #Authorization
+    access_control:
+        - { path: ^/(task|projects), roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
