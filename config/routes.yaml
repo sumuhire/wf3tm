@@ -42,5 +42,9 @@ admin_user_list:
   options:
     expose: true
 
+download_document:
+  path:     /document/{document}
+  controller: App\Controller\DefaultController::downloadDocument
+
 
 

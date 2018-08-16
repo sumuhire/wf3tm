@@ -51,8 +51,9 @@ class Project
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Document")
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\File(mimeTypes={"image/*"})
      */
-    private $thumbnail;
+    private $thumbnailsss;
 
     public function __construct()
     {
@@ -152,14 +153,14 @@ class Project
         return $this->creationDate;
     }
 
-    public function getThumbnail(): ?string
+    public function getThumbnailsss()
     {
-        return $this->thumbnail;
+        return $this->thumbnailsss;
     }
 
-    public function setThumbnail(?string $thumbnail): self
+    public function setThumbnailsss($thumbnailsss): self
     {
-        $this->thumbnail = $thumbnail;
+        $this->thumbnailsss = $thumbnailsss;
 
         return $this;
     }

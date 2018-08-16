@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProjectFormType extends AbstractType
 {
@@ -32,6 +33,12 @@ class ProjectFormType extends AbstractType
                     'expanded' => false,
                     'multiple' => true,
                     'label' => 'The list of workers (use ctrl+click to select multiples)'
+                ]
+            )->add(
+                'thumbnailsss',
+                FileType::class,
+                [
+                    'required' => false
                 ]
             );
         

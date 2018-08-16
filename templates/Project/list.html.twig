@@ -20,7 +20,14 @@
             	<tbody>
             		{% for project in projects %}
             			<tr>
-            				<td>{{ project.getCreationDate()|date('Y-m-d H:i:s') }}</td>
+						{% if project.getThumbnailsss() is not empty %}
+							<td>
+								<img src="{{ path('download_document',{'document':project.getThumbnailsss().getId()})}}">
+							</td>
+            			{% else %}
+							<td></td>
+						{% endif %}
+							<td>{{ project.getCreationDate()|date('Y-m-d H:i:s') }}</td>
             				<td>{{ project.getTitle() }}</td>
             				<td>{{ project.getResponsible().getName() }}</td>
             			</tr>

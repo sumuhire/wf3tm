@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Project;
 use App\Form\ProjectFormType;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Document;
 
 class ProjectController extends Controller
 {
@@ -18,6 +19,24 @@ class ProjectController extends Controller
         
         $projectForm->handleRequest($request);
         if ($projectForm->isSubmitted() && $projectForm->isValid()) {
+            
+            $file = $project->getThumbnailsss();
+            //Move file
+            if($file){
+                $document = new Document();
+                $document->setPath($this->getParameter('upload_dir'))
+                    ->setMimeType($file->getMimeType())
+                    ->setName($file->getFilename());
+            
+
+                //move the file at the end
+                $file->move($this->getParameter('upload_dir'));
+                
+                $project->setThumbnailsss($document);
+
+                $manager->persist($document);
+            }
+            //Insert data
             $manager->persist($project);
             $manager->flush();
             

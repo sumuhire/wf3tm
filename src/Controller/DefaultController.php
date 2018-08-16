@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Entity\Document;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DefaultController extends Controller
 {
@@ -26,6 +28,20 @@ class DefaultController extends Controller
                 'error'         => $error,
             )
         );
+    }
+
+    public function downloadDocument(Document $document)
+    {
+
+        //Most performant way to rename a file
+        $fileName = sprintf(
+            '%s/%s',
+            $document->getPath(),
+            $document->getName()
+        );
+
+        //Send binary information
+        return new BinaryFileResponse($fileName);
     }
     
 }
